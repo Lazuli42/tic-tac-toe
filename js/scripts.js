@@ -23,33 +23,82 @@ Player.prototype.nextTurn = function() {
     this.turn = true;
   }
 };
+$(".board").find("td").on("click", function() {
+  if(player1.turn) {
+    $(this).text("X");
+    player1.nextTurn();
+    player2.nextTurn();
+    board.chekWinBruh('X');
+  }
 
-Board.prototype.checkWin = function(XorO) {
-  if (this.grid[0][0] === XorO && this.grid[0][1] === XorO && this.grid[0][2] === XorO) {
-    alert(XorO + " wins!")
+  else {
+    $(this).text("O");
+    player1.nextTurn();
+    player2.nextTurn();
+    board.chekWinBruh('O');
   }
-  if (this.grid[1][0] === XorO && this.grid[1][1] === XorO && this.grid[1][2] === XorO) {
-    alert(XorO + " wins!")
+})
+
+Board.prototype.chekWinBruh = function(XorO) {
+  if(document.getElementById('00').innerHTML === XorO && document.getElementById('01').innerHTML === XorO && document.getElementById('02').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[2][0] === XorO && this.grid[2][1] === XorO && this.grid[2][2] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('10').innerHTML === XorO && document.getElementById('11').innerHTML === XorO && document.getElementById('12').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[0][0] === XorO && this.grid[1][0] === XorO && this.grid[2][0] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('20').innerHTML === XorO && document.getElementById('21').innerHTML === XorO && document.getElementById('22').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[0][1] === XorO && this.grid[1][1] === XorO && this.grid[2][1] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('01').innerHTML === XorO && document.getElementById('11').innerHTML === XorO && document.getElementById('21').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[0][2] === XorO && this.grid[1][2] === XorO && this.grid[2][2] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('00').innerHTML === XorO && document.getElementById('10').innerHTML === XorO && document.getElementById('20').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[0][0] === XorO && this.grid[1][1] === XorO && this.grid[2][2] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('02').innerHTML === XorO && document.getElementById('12').innerHTML === XorO && document.getElementById('22').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
-  if (this.grid[0][2] === XorO && this.grid[1][1] === XorO && this.grid[2][0] === XorO) {
-    alert(XorO + " wins!")
+  else if(document.getElementById('00').innerHTML === XorO && document.getElementById('11').innerHTML === XorO && document.getElementById('22').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
+  }
+  else if(document.getElementById('02').innerHTML === XorO && document.getElementById('11').innerHTML === XorO && document.getElementById('20').innerHTML === XorO){
+    alert(XorO + " Wins!");
+    $("td").html("");
   }
 }
+// Board.prototype.checkWin = function(XorO) {
+//   if (this.grid[0][0] === XorO && this.grid[0][1] === XorO && this.grid[0][2] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[1][0] === XorO && this.grid[1][1] === XorO && this.grid[1][2] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[2][0] === XorO && this.grid[2][1] === XorO && this.grid[2][2] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[0][0] === XorO && this.grid[1][0] === XorO && this.grid[2][0] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[0][1] === XorO && this.grid[1][1] === XorO && this.grid[2][1] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[0][2] === XorO && this.grid[1][2] === XorO && this.grid[2][2] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[0][0] === XorO && this.grid[1][1] === XorO && this.grid[2][2] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+//   if (this.grid[0][2] === XorO && this.grid[1][1] === XorO && this.grid[2][0] === XorO) {
+//     alert(XorO + " wins!")
+//   }
+// }
 
 // Front End
 var board = new Board();
@@ -74,30 +123,30 @@ var markSquare = function(y, x, XorO) {
   console.log(board.grid)
 }
 
-$("#00").click(function() {
-  markSquare('0', '0');
-})
-$("#01").click(function() {
-  markSquare('0', '1');
-})
-$("#02").click(function() {
-  markSquare('0', '2');
-})
-$("#10").click(function() {
-  markSquare('1', '0');
-})
-$("#11").click(function() {
-  markSquare('1', '1');
-})
-$("#12").click(function() {
-  markSquare('1', '2');
-})
-$("#20").click(function() {
-  markSquare('2', '0');
-})
-$("#21").click(function() {
-  markSquare('2', '1');
-})
-$("#22").click(function() {
-  markSquare('2', '2');
-})
+// $("#00").click(function() {
+//   markSquare('0', '0');
+// })
+// $("#01").click(function() {
+//   markSquare('0', '1');
+// })
+// $("#02").click(function() {
+//   markSquare('0', '2');
+// })
+// $("#10").click(function() {
+//   markSquare('1', '0');
+// })
+// $("#11").click(function() {
+//   markSquare('1', '1');
+// })
+// $("#12").click(function() {
+//   markSquare('1', '2');
+// })
+// $("#20").click(function() {
+//   markSquare('2', '0');
+// })
+// $("#21").click(function() {
+//   markSquare('2', '1');
+// })
+// $("#22").click(function() {
+//   markSquare('2', '2');
+// })
