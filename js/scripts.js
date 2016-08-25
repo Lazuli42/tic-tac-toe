@@ -23,9 +23,9 @@ Player.prototype.nextTurn = function() {
     this.turn = true;
   }
 };
-$(".board").find("td").on("click", function() {
+$(".board").find("td").on("click", function() { //finds and works when clicked!
   if(player1.turn) {
-    $(this).text("X");
+    $(this).text("X"); //add the x at the clicked square - other way around than usual?
     player1.nextTurn();
     player2.nextTurn();
     board.chekWinBruh('X');
@@ -72,6 +72,10 @@ Board.prototype.chekWinBruh = function(XorO) {
     alert(XorO + " Wins!");
     $("td").html("");
   }
+  else if (document.getElementById('00').innerHTML != "" && document.getElementById('01').innerHTML != "" && document.getElementById('02').innerHTML != "" && document.getElementById('10').innerHTML != "" && document.getElementById('11').innerHTML != "" && document.getElementById('12').innerHTML != "" && document.getElementById('20').innerHTML != "" && document.getElementById('21').innerHTML != "" && document.getElementById('22').innerHTML != "") {
+    alert("A strange game. The only winning move is not to play.")
+    $("td").html("");
+  }
 }
 // Board.prototype.checkWin = function(XorO) {
 //   if (this.grid[0][0] === XorO && this.grid[0][1] === XorO && this.grid[0][2] === XorO) {
@@ -105,23 +109,23 @@ var board = new Board();
 var player1 = new Player (true, 'X');
 var player2 = new Player (false, 'O');
 
-var markSquare = function(y, x, XorO) {
-  if ((player1.turn) && (board.grid[y][x] === 0)) {
-    $("#" + y + x).text('X');
-    board.grid[y][x] = 'X'
-    board.checkWin('X')
-    player1.nextTurn();
-    player2.nextTurn();
-  }
-  else if ((player2.turn) && (board.grid[y][x] === 0)) {
-    $("#" + y + x).text('O');
-    board.grid[y][x] = 'O'
-    board.checkWin('O')
-    player1.nextTurn();
-    player2.nextTurn();
-  }
-  console.log(board.grid)
-}
+// var markSquare = function(y, x, XorO) {
+//   if ((player1.turn) && (board.grid[y][x] === 0)) {
+//     $("#" + y + x).text('X');
+//     board.grid[y][x] = 'X'
+//     board.checkWin('X')
+//     player1.nextTurn();
+//     player2.nextTurn();
+//   }
+//   else if ((player2.turn) && (board.grid[y][x] === 0)) {
+//     $("#" + y + x).text('O');
+//     board.grid[y][x] = 'O'
+//     board.checkWin('O')
+//     player1.nextTurn();
+//     player2.nextTurn();
+//   }
+//   console.log(board.grid)
+// }
 
 // $("#00").click(function() {
 //   markSquare('0', '0');
